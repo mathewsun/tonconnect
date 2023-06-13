@@ -61,10 +61,12 @@
           } else if (wallet.bridgeUrl) {
             connectButton.onclick = () => {
               connectButton.disabled = true;
-              console.log('Connection link:', connector.connect({
-                universalLink: wallet.universalLink,
-                bridgeUrl: wallet.bridgeUrl
-              }));
+			  
+			  var redirectUrl = connector.connect({universalLink: wallet.universalLink, bridgeUrl: wallet.bridgeUrl});
+			  
+              console.log('Connection link:', redirectUrl);
+			  
+			  window.location.href = redirectUrl;
             };
           } else {
             // wallet app does not provide any auth method
